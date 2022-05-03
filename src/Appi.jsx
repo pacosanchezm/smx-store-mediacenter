@@ -1,5 +1,8 @@
 
 import { useState, useEffect, useContext, createContext } from "react"
+import axios from "axios"
+
+
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Container, Col, Row } from 'react-bootstrap'
@@ -41,6 +44,7 @@ let MiRegistro = {
   "id": 0,
 }
 
+let server = "https://www.empresando.com"
 
 // -------------------------------------- States
 
@@ -180,6 +184,9 @@ let useAcciones = function(StateContext) {
 
   // const useData = new usedata()
 
+  const [UserId, setUserId] = useContext(StateContext).User.Id;
+  const [UserName, setUserName] = useContext(StateContext).User.Name;
+  const [Sucursal, setSucursal] = useContext(StateContext).User.Sucursal;
 
   const [Registro, setRegistro] = useContext(StateContext).Registro
   const [Registros, setRegistros] = useContext(StateContext).Registros
@@ -197,20 +204,20 @@ let useAcciones = function(StateContext) {
 
   return {
 
-  //   getUser : async (props) => {
-  //    try {
-  //      const res = await axios.get(server + '/logindata')
-  //      setUserId(res.data.miid)
-  //      setUserName(res.data.miuser)
-  //      setSucursal(res.data.misucursal)
+    getUser : async (props) => {
+     try {
+       const res = await axios.get(server + '/logindata')
+       setUserId(res.data.miid)
+       setUserName(res.data.miuser)
+       setSucursal(res.data.misucursal)
 
-  //      // Todo: Como jalar el req y el t?
-  //    } catch (e) { console.error(e) }
-  //  },
+       // Todo: Como jalar el req y el t?
+     } catch (e) { console.error(e) }
+   },
 
     Loader : async function (props) {
 
-      // this.getUser()
+      this.getUser()
       setLoadingDataMain(true)
       setLoadingDataMain(false)
 
