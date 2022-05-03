@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": ".",
   "dependencies": {
     "@mdx-js/react": "2.1.1",
     "@u-wave/react-vimeo": "0.9.5",

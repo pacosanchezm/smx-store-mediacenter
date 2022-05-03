@@ -323,6 +323,10 @@ const HeaderBody = props => {
 
 
 const Body = props => {
+  const Estilo = useThemeUI().theme.styles;
+
+  const [UserId, setUserId] = useContext(StateContext).User.Id;
+
 
   const useacciones = new useAcciones(StateContext)
   const isDesktop = useMediaQuery({ minWidth: 550 })
@@ -340,7 +344,7 @@ const Body = props => {
 
             <Helmet>
               <meta charSet="utf-8" />
-              <title>Únete a la Red Empresando</title>
+              <title>Empresando</title>
               {/* <link rel="canonical" href="http://mysite.com/example" /> */}
               <meta property="og:title" content="Eventos Empresando" />
               <meta property="og:description" content="Eventos Empresando" />
@@ -348,14 +352,26 @@ const Body = props => {
             </Helmet>
 
 
-            <Vimeo
-              video="600286885"
-              // autoplay
-              style={{textAlign:"center"}}
-              width={isDesktop ? 640:300}
-              showTitle={isDesktop ? true:false}
+            {UserId ? 
 
-            />
+              <Vimeo
+                video="600286885"
+                // autoplay
+                style={{textAlign:"center"}}
+                width={isDesktop ? 640:300}
+                showTitle={isDesktop ? true:false}
+              /> :
+
+
+              <Row>
+                <Col xs={9} style={{textAlign: "left"}}>
+                  <Text sx={{...Estilo.msecc2, textAlign: "left"}}>{"Para ver este contenido, inicia sesión"}</Text> <Text sx={Estilo.d2s} >(En la opción Mi cuenta / Iniciar Sesión)</Text>
+                </Col>
+              </Row>
+
+            }
+
+
           </Row>
 
         </Container>
